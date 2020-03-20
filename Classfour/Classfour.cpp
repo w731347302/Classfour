@@ -87,7 +87,7 @@ int main()
 	Mat h_labels, h_states, h_cent;
 	h_num = connectedComponentsWithStats(h_er, h_labels, h_states, h_cent);
 
-	cout << h_num - 1 << endl;
+	int s=0;
 	for (int m = 0; m < h_num; m++)
 	{
 		Rect t_rect;
@@ -95,12 +95,13 @@ int main()
 		t_rect.y = h_states.at<int>(m, 1);
 		t_rect.width = h_states.at<int>(m, 2);
 		t_rect.height = h_states.at<int>(m, 3);
-		if (h_states.at<int>(m, 4) < 10000)
+		if (h_states.at<int>(m, 3) < 800)
 		{
+			s++;
 			rectangle(h_test, t_rect, Scalar(255, 0, 0));
 		}
-
 	}
+	cout << s << endl;
 	
 	
 	return 0;
